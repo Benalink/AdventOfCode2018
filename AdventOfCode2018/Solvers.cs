@@ -12,24 +12,20 @@ namespace AdventOfCode2018
 
         public int Day1Part2Solver(IEnumerable<int> frequencyChanges, int initialFrequency = 0)
         {
-            IEnumerable<int> memEnumerable = frequencyChanges as int[] ?? frequencyChanges.ToArray();
+            IEnumerable<int> memorizedEnumerable = frequencyChanges as int[] ?? frequencyChanges.ToArray();
             var knownFrequencies = new HashSet<int>();
-            dynamic duplicate = new { Duplicate = false };
             int currentFrequency = initialFrequency;
             knownFrequencies.Add(currentFrequency);
 
-            while (!duplicate.Duplicate)
+            while (true)
             {
-                //Omg it's not pure!
-                duplicate = memEnumerable.Select(frequencyChange => new
-                    {
-                        Value = currentFrequency += frequencyChange,
-                        Duplicate = !knownFrequencies.Add(currentFrequency)
-                    })
-                    .SkipWhile(frequency => !frequency.Duplicate).FirstOrDefault() ?? duplicate;
+                foreach (int frequencyChange in memorizedEnumerable)
+                {
+                    currentFrequency += frequencyChange;
+                    if (!knownFrequencies.Add(currentFrequency))
+                        return currentFrequency;
+                }
             }
-
-            return duplicate.Value;
         }
     }
 }
