@@ -15,9 +15,7 @@ namespace AdventOfCode2018Tests
             IEnumerable<int> input = File.ReadAllLines($"{AppContext.BaseDirectory}/Inputs/Day1.txt")
                 .Select(int.Parse);
 
-            var solvers = new Solvers();
-
-            int result = solvers.Day1Part1Solver(input);
+            int result = Solvers.Day1.Part1Solver(input);
 
             Assert.Equal(518, result);
         }
@@ -28,9 +26,7 @@ namespace AdventOfCode2018Tests
             IEnumerable<int> input = File.ReadAllLines($"{AppContext.BaseDirectory}/Inputs/Day1.txt")
                 .Select(int.Parse);
 
-            var solvers = new Solvers();
-
-            int result = solvers.Day1Part2Solver(input);
+            int result = Solvers.Day1.Part2Solver(input);
 
             Assert.Equal(72889, result);
         }

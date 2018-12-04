@@ -5,25 +5,28 @@ using System.Text;
 
 namespace AdventOfCode2018
 {
-    public class Solvers
+    public static class Solvers
     {
-        public int Day1Part1Solver(IEnumerable<int> frequencyChanges, int initialFrequency = 0) 
-            => frequencyChanges.Prepend(initialFrequency).Sum();
-
-        public int Day1Part2Solver(IEnumerable<int> frequencyChanges, int initialFrequency = 0)
+        public static class Day1
         {
-            IEnumerable<int> memorizedEnumerable = frequencyChanges as int[] ?? frequencyChanges.ToArray();
-            var knownFrequencies = new HashSet<int>();
-            int currentFrequency = initialFrequency;
-            knownFrequencies.Add(currentFrequency);
+            public static int Part1Solver(IEnumerable<int> frequencyChanges, int initialFrequency = 0)
+                => frequencyChanges.Prepend(initialFrequency).Sum();
 
-            while (true)
+            public static int Part2Solver(IEnumerable<int> frequencyChanges, int initialFrequency = 0)
             {
-                foreach (int frequencyChange in memorizedEnumerable)
+                IEnumerable<int> memorizedEnumerable = frequencyChanges as int[] ?? frequencyChanges.ToArray();
+                var knownFrequencies = new HashSet<int>();
+                int currentFrequency = initialFrequency;
+                knownFrequencies.Add(currentFrequency);
+
+                while (true)
                 {
-                    currentFrequency += frequencyChange;
-                    if (!knownFrequencies.Add(currentFrequency))
-                        return currentFrequency;
+                    foreach (int frequencyChange in memorizedEnumerable)
+                    {
+                        currentFrequency += frequencyChange;
+                        if (!knownFrequencies.Add(currentFrequency))
+                            return currentFrequency;
+                    }
                 }
             }
         }
