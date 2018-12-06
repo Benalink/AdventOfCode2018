@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Xunit;
-using AdventOfCode2018;
+using AdventOfCode2018.Solvers;
 
 namespace AdventOfCode2018Tests
 {
